@@ -1,2 +1,2 @@
-import { useState } from "react";
-import './App.css';
+import './Animal.css';
+import PropTypes from 'prop-types';
