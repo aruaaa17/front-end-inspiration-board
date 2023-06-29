@@ -14,9 +14,9 @@ const Card = props => {
 
 Card.propTypes = {
   cardId: PropTypes.number.isRequired,
-  message: PropTypes.string,
+  message: PropTypes.string.isRequired,
   likesCount: PropTypes.number,
-  boardId: PropTypes.number,
+  boardId: PropTypes.number.isRequired,
 };
 
 export default Card;

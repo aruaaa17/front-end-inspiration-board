@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 import Board from './components/Board';
+import BoardList from './components/BoardList';
 import NewBoardForm from './components/NewBoardForm';
-import NewCardForm from './components/NewCardForm';
 
 const INITIAL_BOARD = [
   {
@@ -34,14 +34,16 @@ const INITIAL_BOARD = [
 ];
 
 const App = () => {
+  const [boardData, setBoardData] = useState(INITIAL_BOARD);
+
   return (
     <section className='App'>
       <header className='App-header'></header>
       <main>
-        <h1>Inspiration Board</h1>
-        <Board Board={INITIAL_BOARD}></Board>
-        <NewBoardForm></NewBoardForm>
-        <NewCardForm></NewCardForm>
+        <h1 className='title'>Inspiration Board</h1>
+        <BoardList className='boards-names' boardData={boardData} />
+        <Board className='board' />
+        <NewBoardForm className='new-board-form' />
       </main>
     </section>
   );

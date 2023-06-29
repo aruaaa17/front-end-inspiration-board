@@ -28,11 +28,11 @@ CardList.propTypes = {
   listOfCards: PropTypes.arrayOf(
     PropTypes.shape({
       cardId: PropTypes.number.isRequired,
-      message: PropTypes.string,
+      message: PropTypes.string.isRequired,
       likesCount: PropTypes.number,
-      boardId: PropTypes.number,
+      boardId: PropTypes.number.isRequired,
     })
-  ),
+  ).isRequired,
 };
 
 export default CardList;
