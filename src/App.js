@@ -41,10 +41,13 @@ const App = () => {
       <header className='App-header'></header>
       <main>
         <h1 className='title'>Inspiration Board</h1>
-        <BoardList className='boards-names' boardData={boardData} />
-        <Board className='board' />
-        <NewBoardForm className='new-board-form' />
+        <section className='boards-container'>
+          <BoardList className='boards-names' boardData={boardData} />
+          <Board className='board' />
+          <NewBoardForm className='new-board-form' />
+        </section>
       </main>
+      {/* <footer>Click <span class="footer__delete-btn">here</span> to delete all boards and cards!</footer> */}
     </section>
   );
 };
