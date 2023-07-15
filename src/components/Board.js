@@ -4,11 +4,13 @@ import CardList from './components/CardList';
 
 const Board = props => {
   return (
-    <section className='Board'>
+    <section className='board'>
+      <h2>Selected Board</h2>
       <p>
         Board owner:{props.owner}
         title:{props.title}
       </p>
+      {/* if true | else: <p>Select a Board from the Board List!</p> */}
       <CardList listOfCards={props.listOfCards}></CardList>
     </section>
   );
