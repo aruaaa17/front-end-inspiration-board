@@ -7,7 +7,8 @@ const BoardList = props => {
   };
   return (
     <section>
-      <ul>{getBoardsNames(props.boardData)}</ul>
+      <h2>Boards</h2>
+      <ul>className='boards-list'{getBoardsNames(props.boardData)}</ul>
     </section>
   );
 };
