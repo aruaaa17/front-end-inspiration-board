@@ -2,13 +2,11 @@ import React, { useState } from 'react';
 import './NewBoardForm.css';
 import PropTypes from 'prop-types';
 
-const INITIAL_FORM_DATA = {
-  title: '',
-  owner: '',
-};
-
 const NewBoardForm = props => {
-  const [boardFormData, setBoardFormData] = useState(INITIAL_FORM_DATA);
+  const [boardFormData, setBoardFormData] = useState({
+    title: '',
+    owner: '',
+  });
 
   const updateBoardForm = event => {
     setBoardFormData({
@@ -20,35 +18,39 @@ const NewBoardForm = props => {
   const handleFormSubmit = event => {
     event.preventDefault();
     props.createNewBoard(boardFormData);
-    setBoardFormData(INITIAL_FORM_DATA);
+    setBoardFormData({
+      title: '',
+      owner: '',
+    });
   };
 
   return (
     <section className='new-board-form'>
-      <h2>NewBoardForm</h2>
+      <h2>Create a New Board</h2>
       <form onSubmit={handleFormSubmit} className='stack'>
         <section className='form-title'>
-          <label htmlFor='title'>Task Title:</label>
+          <label htmlFor='title'>Board Title:</label>
           <input
-            onChange={updateTaskTitle}
             name='title'
             type='text'
-            value={formFields.title}
+            value={boardFormData.title}
+            onChange={updateBoardForm}
           />
         </section>
-        <section className='task-description'>
-          <label htmlFor='description'>Task Description:</label>
+        <section className='title-owner'>
+          <label htmlFor='owner'>Owner's Name:</label>
           <input
-            onChange={updateTaskDescription}
-            name='description'
+            name='owner'
             type='text'
-            value={formFields.description}
+            value={boardFormData.owner}
+            onChange={updateBoardForm}
           />
         </section>
-        <section className='submit-task'>
-          <input type='submit' value='Add New Task' />
+        <section className='submit-board'>
+          <input type='submit' value='Add New Board' />
         </section>
       </form>
+      <span className='new-board-form_hide'>Hide New Board Form</span>
     </section>
   );
 };
