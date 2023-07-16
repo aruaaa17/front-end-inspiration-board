@@ -2,26 +2,31 @@ import React, { useState } from 'react';
 import './NewCardForm.css';
 import PropTypes from 'prop-types';
 
-const INITIAL_FORM_DATA = {
-  message: '',
-};
-
 function NewCardForm(props) {
-  const [cardFormData, setCardFormData] = useState(INITIAL_FORM_DATA);
-
-  // const anInputChanged = (evt) => {
-  //     if (evt.target.value)
-  // }
+  const [cardFormData, setCardFormData] = useState({
+    message: '',
+    likesCount: 0,
+  });
 
   const handleFormSubmit = event => {
     event.preventDefault();
     props.createNewCard(cardFormData);
-    setCardFormData(INITIAL_FORM_DATA);
+    setCardFormData({
+      message: '',
+      likesCount: 0,
+    });
+  };
+
+  const updateCardForm = event => {
+    setCardFormData({
+      ...cardFormData,
+      [event.target.name]: event.target.value,
+    });
   };
 
   return (
     <section className='CardList'>
-      <h2>Create New Card</h2>
+      <h2>Create a New Card</h2>
       <form className='stack' onSubmit={handleFormSubmit}>
         <label htmlFor='cardMessage'>Message:</label>
         <input
@@ -29,15 +34,18 @@ function NewCardForm(props) {
           name='message'
           type='text'
           value={cardFormData.message}
-          // onChange={ }
+          onChange={updateCardForm}
         />
+        <section className='submit-card'>
+          <input type='submit' value='Add New Card' />
+        </section>
       </form>
     </section>
   );
 }
 
 NewCardForm.propTypes = {
-  createNewCard: propTypes.func.isRequired,
+  createNewCard: PropTypes.func.isRequired,
 };
 
 export default NewCardForm;
