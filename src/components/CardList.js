@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 import Card from './Card';
 
 const CardList = props => {
-  const listOfCards = props.listOfCards;
-
   return (
     <section className='card-list'>
       <h2>Cards For {props.boardTitle}</h2>
       <ul>
-        {listOfCards.map(card => (
+        {props.listOfCards.map(card => (
           <li key={card.cardId}>
             <Card
               message={card.message}

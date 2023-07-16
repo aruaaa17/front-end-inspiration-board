@@ -9,7 +9,7 @@ const BoardList = props => {
   return (
     <section>
       <h2>Boards</h2>
-      <ul>className='boards-list'{getBoardsNames(props.boardData)}</ul>
+      <ul className='boards-list'>{getBoardsNames(props.boardData)}</ul>
     </section>
   );
 };

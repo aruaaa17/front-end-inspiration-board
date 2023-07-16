@@ -43,7 +43,7 @@ const App = () => {
         <h1 className='title'>Inspiration Board</h1>
         <section className='boards-container'>
           <BoardList className='boards-names' boardData={boardData} />
-          <Board className='board' />
+          <Board className='board' board={boardData[0]} />
           <NewBoardForm className='new-board-form' />
         </section>
       </main>
