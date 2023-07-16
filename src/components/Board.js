@@ -1,6 +1,7 @@
 import './Board.css';
 import PropTypes from 'prop-types';
 import CardList from './components/CardList';
+import NewCardForm from './NewCardForm';
 
 const Board = props => {
   return (
@@ -11,10 +12,13 @@ const Board = props => {
         title:{props.title}
       </p>
       {/* if true | else: <p>Select a Board from the Board List!</p> */}
-      <CardList
-        listOfCards={props.listOfCards}
-        boardTitle={props.title}
-      ></CardList>
+      <section className='cards-container'>
+        <CardList
+          listOfCards={props.listOfCards}
+          boardTitle={props.title}
+        ></CardList>
+        <NewCardForm />
+      </section>
     </section>
   );
 };
