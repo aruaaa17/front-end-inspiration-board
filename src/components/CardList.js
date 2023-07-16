@@ -6,8 +6,8 @@ const CardList = props => {
   const listOfCards = props.listOfCards;
 
   return (
-    <section className='CardList'>
-      <h2>Card List</h2>
+    <section className='card-list'>
+      <h2>Cards For {props.boardTitle}</h2>
       <ul>
         {listOfCards.map(card => (
           <li key={card.cardId}>
@@ -33,6 +33,7 @@ CardList.propTypes = {
       boardId: PropTypes.number.isRequired,
     })
   ).isRequired,
+  boardTitle: PropTypes.string.isRequired,
 };
 
 export default CardList;
