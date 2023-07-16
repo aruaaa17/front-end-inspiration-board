@@ -38,13 +38,18 @@ const App = () => {
 
   return (
     <section className='App'>
-      <header className='App-header'></header>
-      <main>
+      <header className='App-header'>
         <h1 className='title'>Inspiration Board</h1>
+      </header>
+      <main className='App-main'>
         <section className='boards-container'>
-          <BoardList className='boards-names' boardData={boardData} />
-          <Board className='board' board={boardData[0]} />
-          <NewBoardForm className='new-board-form' />
+          <div className='two-col'>
+            <BoardList className='boards-names' boardData={boardData} />
+            <NewBoardForm className='new-board-form' />
+          </div>
+          <div className='grid'>
+            <Board className='board' board={boardData[0]} />
+          </div>
         </section>
       </main>
       {/* <footer>Click <span class="footer__delete-btn">here</span> to delete all boards and cards!</footer> */}
