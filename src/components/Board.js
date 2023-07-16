@@ -11,7 +11,10 @@ const Board = props => {
         title:{props.title}
       </p>
       {/* if true | else: <p>Select a Board from the Board List!</p> */}
-      <CardList listOfCards={props.listOfCards}></CardList>
+      <CardList
+        listOfCards={props.listOfCards}
+        boardTitle={props.title}
+      ></CardList>
     </section>
   );
 };
