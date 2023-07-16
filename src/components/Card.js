@@ -2,12 +2,19 @@ import './Card.css';
 import PropTypes from 'prop-types';
 
 const Card = props => {
+  const toggleDelete = () => {
+    // props.deleteCard(props.cardId);
+  };
+
   return (
     <section className='Card'>
-      <p>
-        message: {props.message}
-        likesCount: {props.likesCount}
-      </p>
+      <p>{props.message}</p>
+      <section className='card-active-bar'>
+        <p>{props.likesCount} 💕</p>
+        <p onClick={toggleDelete} className='delete'>
+          Delete
+        </p>
+      </section>
     </section>
   );
 };
