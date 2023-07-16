@@ -5,7 +5,6 @@ import PropTypes from 'prop-types';
 function NewCardForm(props) {
   const [cardFormData, setCardFormData] = useState({
     message: '',
-    likesCount: 0,
   });
 
   const handleFormSubmit = event => {
@@ -13,14 +12,12 @@ function NewCardForm(props) {
     props.createNewCard(cardFormData);
     setCardFormData({
       message: '',
-      likesCount: 0,
     });
   };
 
   const updateCardForm = event => {
     setCardFormData({
-      ...cardFormData,
-      [event.target.name]: event.target.value,
+      message: event.target.value,
     });
   };
 
