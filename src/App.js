@@ -91,6 +91,14 @@ const App = () => {
       });
   };
 
+  const createNewCard = newCard => {
+    cardPostRequest(newCard);
+  };
+
+  const createNewBoard = newBoard => {
+    boardPostRequest(newBoard);
+  };
+
   const deleteCardRequest = cardId => {
     axios
       .delete(`https://inspo-board-api.onrender.com/cards/${cardId}`)
@@ -111,10 +119,6 @@ const App = () => {
   };
 
   const updateLikes = cardToUpdate => {};
-
-  const createNewBoard = newBoard => {};
-
-  const createNewCard = newCard => {};
 
   useEffect(() => {
     loadBoards();
