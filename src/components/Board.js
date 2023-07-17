@@ -16,10 +16,12 @@ const Board = props => {
       {/* if true | else: <p>Select a Board from the Board List!</p> */}
       <section className='cards-container'>
         <CardList
-          listOfCards={props.board.cards}
+          cards={props.board.cards}
           boardTitle={props.board.title}
+          updateLikes={props.updateLikes}
+          deleteCard={props.deleteCard}
         ></CardList>
-        <NewCardForm />
+        <NewCardForm createNewCard={props.createNewCard} />
       </section>
     </section>
   );
@@ -37,6 +39,10 @@ Board.propTypes = {
       boardId: PropTypes.number.isRequired,
     })
   ).isRequired,
+  updateLikes: PropTypes.func.isRequired,
+  deleteCard: PropTypes.func.isRequired,
+  createNewCard: PropTypes.func.isRequired,
+  createNewBoard: PropTypes.func.isRequired,
 };
 
 export default Board;

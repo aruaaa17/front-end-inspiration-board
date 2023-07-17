@@ -172,15 +172,22 @@ const App = () => {
       <main className='App-main'>
         <section className='boards-container'>
           <section className='two-col'>
-            <BoardList className='boards-names' boardData={boardData} />4
+            <BoardList className='boards-names' boardData={boardData} />
             <NewBoardForm className='new-board-form' />
           </section>
           <section className='grid'>
-            <Board className='board' board={currentBoard} />
+            <Board
+              className='board'
+              board={currentBoard}
+              updateLikes={updateLikes}
+              deleteCard={deleteCard}
+              createNewCard={createNewCard}
+              createNewBoard={createNewBoard}
+            />
           </section>
         </section>
       </main>
-      {/* <footer>Click <span class="footer__delete-btn">here</span> to delete all boards and cards!</footer> */}
+      {/* <footer>Click <span className="footer__delete-btn">here</span> to delete all boards and cards!</footer> */}
     </section>
   );
 };

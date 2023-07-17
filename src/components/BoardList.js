@@ -20,7 +20,7 @@ BoardList.propTypes = {
       boardId: PropTypes.number,
       owner: PropTypes.string,
       title: PropTypes.string.isRequired,
-      listOfCards: PropTypes.array,
+      cards: PropTypes.array,
     })
   ).isRequired,
 };

@@ -24,6 +24,8 @@ Card.propTypes = {
   message: PropTypes.string.isRequired,
   likesCount: PropTypes.number,
   boardId: PropTypes.number.isRequired,
+  updateLikes: PropTypes.func.isRequired,
+  deleteCard: PropTypes.func.isRequired,
 };
 
 export default Card;
