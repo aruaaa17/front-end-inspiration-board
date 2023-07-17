@@ -7,13 +7,15 @@ const CardList = props => {
     <section className='card-list'>
       <h2>Cards For {props.boardTitle}</h2>
       <ul>
-        {props.listOfCards.map(card => (
+        {props.cards.map(card => (
           <li key={card.cardId}>
             <Card
               message={card.message}
               likesCount={card.likesCount}
               cardId={card.cardId}
               boardId={card.boardId}
+              updateLikes={props.updateLikes}
+              deleteCard={props.deleteCard}
             />
           </li>
         ))}
@@ -23,7 +25,7 @@ const CardList = props => {
 };
 
 CardList.propTypes = {
-  listOfCards: PropTypes.arrayOf(
+  cards: PropTypes.arrayOf(
     PropTypes.shape({
       cardId: PropTypes.number.isRequired,
       message: PropTypes.string.isRequired,
@@ -32,6 +34,8 @@ CardList.propTypes = {
     })
   ).isRequired,
   boardTitle: PropTypes.string.isRequired,
+  updateLikes: PropTypes.func.isRequired,
+  deleteCard: PropTypes.func.isRequired,
 };
 
 export default CardList;

@@ -137,10 +137,10 @@ const App = () => {
     setBoardData([]);
   };
 
-  const updateLikesRequest = (cardToUpdate, likesCount) => {
+  const updateLikesRequest = cardToUpdate => {
     axios
-      .patch(`https://inspo-board-api.onrender.com/${cardId}`, {
-        likesCount: cardToUpdate.likesCount,
+      .patch(`https://inspo-board-api.onrender.com/${cardToUpdate.cardId}`, {
+        likesCount: cardToUpdate.likesCount + 1,
       })
       .then(response => {
         console.log(response);
@@ -150,7 +150,15 @@ const App = () => {
       });
   };
 
-  const updateLikes = cardToUpdate => {};
+  const updateLikes = cardToUpdate => {
+    const updatedCards = currentBoard.cards.map(card => {
+      if (card.cardId === cardToUpdate.cardId) {
+        updateLikesRequest(cardToUpdate);
+      }
+      return card;
+    });
+    setCurrentBoard({ ...currentBoard, cards: updatedCards });
+  };
 
   useEffect(() => {
     loadBoardsRequest();
@@ -168,11 +176,18 @@ const App = () => {
             <NewBoardForm className='new-board-form' />
           </section>
           <section className='grid'>
-            <Board className='board' board={currentBoard} />
+            <Board
+              className='board'
+              board={currentBoard}
+              updateLikes={updateLikes}
+              deleteCard={deleteCard}
+              createNewCard={createNewCard}
+              createNewBoard={createNewBoard}
+            />
           </section>
         </section>
       </main>
-      {/* <footer>Click <span class="footer__delete-btn">here</span> to delete all boards and cards!</footer> */}
+      {/* <footer>Click <span className="footer__delete-btn">here</span> to delete all boards and cards!</footer> */}
     </section>
   );
 };

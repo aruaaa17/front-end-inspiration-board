@@ -6,20 +6,26 @@ import NewCardForm from './NewCardForm';
 const Board = props => {
   return (
     <section className='board'>
-      <section className='display-board-name'>
-        <h2>Selected Board</h2>
-        <p>
-          Board owner:{props.board.owner}
-          title:{props.board.title}
-        </p>
+      <section className='display'>
+        <section className='selected-board'>
+          <h2>Selected Board</h2>
+          <p>
+            Board owner:{props.owner}
+            title:{props.title}
+          </p>
+        </section>
+        <section className='new-card-form'>
+          <NewCardForm createNewCard={props.createNewCard} />
+          {/* if true | else: <p>Select a Board from the Board List!</p> */}
+        </section>
       </section>
-      {/* if true | else: <p>Select a Board from the Board List!</p> */}
       <section className='cards-container'>
         <CardList
-          listOfCards={props.board.listOfCards}
-          boardTitle={props.board.title}
+          cards={props.cards}
+          boardTitle={props.title}
+          updateLikes={props.updateLikes}
+          deleteCard={props.deleteCard}
         ></CardList>
-        <NewCardForm />
       </section>
     </section>
   );
@@ -37,6 +43,10 @@ Board.propTypes = {
       boardId: PropTypes.number.isRequired,
     })
   ).isRequired,
+  updateLikes: PropTypes.func.isRequired,
+  deleteCard: PropTypes.func.isRequired,
+  createNewCard: PropTypes.func.isRequired,
+  createNewBoard: PropTypes.func.isRequired,
 };
 
 export default Board;
