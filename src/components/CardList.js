@@ -7,7 +7,7 @@ const CardList = props => {
     <section className='card-list'>
       <h2>Cards For {props.boardTitle}</h2>
       <ul>
-        {props.listOfCards.map(card => (
+        {props.cards.map(card => (
           <li key={card.cardId}>
             <Card
               message={card.message}

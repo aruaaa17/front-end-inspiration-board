@@ -137,10 +137,10 @@ const App = () => {
     setBoardData([]);
   };
 
-  const updateLikesRequest = (cardToUpdate, likesCount) => {
+  const updateLikesRequest = cardToUpdate => {
     axios
-      .patch(`https://inspo-board-api.onrender.com/${cardId}`, {
-        likesCount: cardToUpdate.likesCount,
+      .patch(`https://inspo-board-api.onrender.com/${cardToUpdate.cardId}`, {
+        likesCount: cardToUpdate.likesCount + 1,
       })
       .then(response => {
         console.log(response);
@@ -150,7 +150,15 @@ const App = () => {
       });
   };
 
-  const updateLikes = cardToUpdate => {};
+  const updateLikes = cardToUpdate => {
+    const updatedCards = currentBoard.cards.map(card => {
+      if (card.cardId === cardToUpdate.cardId) {
+        updateLikesRequest(cardToUpdate);
+      }
+      return card;
+    });
+    setCurrentBoard({ ...currentBoard, cards: updatedCards });
+  };
 
   useEffect(() => {
     loadBoardsRequest();
@@ -164,7 +172,7 @@ const App = () => {
       <main className='App-main'>
         <section className='boards-container'>
           <section className='two-col'>
-            <BoardList className='boards-names' boardData={boardData} />
+            <BoardList className='boards-names' boardData={boardData} />4
             <NewBoardForm className='new-board-form' />
           </section>
           <section className='grid'>

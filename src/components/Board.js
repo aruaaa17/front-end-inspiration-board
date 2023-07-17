@@ -16,7 +16,7 @@ const Board = props => {
       {/* if true | else: <p>Select a Board from the Board List!</p> */}
       <section className='cards-container'>
         <CardList
-          listOfCards={props.board.listOfCards}
+          listOfCards={props.board.cards}
           boardTitle={props.board.title}
         ></CardList>
         <NewCardForm />
