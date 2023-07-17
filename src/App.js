@@ -59,15 +59,14 @@ const App = () => {
           message: cardToAdd.message,
         }
       )
-      .then(response => {
-        console.log(response.data);
+      .then(() => {
         axios
           .get(
-            `https://inspo-board-api.onrender.com/boards/${response.data.cards.cardId}`
+            `https://inspo-board-api.onrender.com/${currentBoard.boardId}/cards`
           )
           .then(response => {
-            console.log(response.data.card);
-            // setCurrentBoard([...currentBoard, response.data.card]);
+            console.log(response.data);
+            setCurrentBoard(response.data);
           })
           .catch(error => {
             console.log('error', error);
