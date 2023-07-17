@@ -118,6 +118,25 @@ const App = () => {
     setCurrentBoard({ ...currentBoard, cards: newCardList });
   };
 
+  const deleteAllBoards = boardIds => {
+    axios
+      .delete(`https://inspo-board-api.onrender.com/boards/${boardIds}`)
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  const deleteBoards = boardData => {
+    const boardIds = boardData.map(board => {
+      return board.boardId;
+    });
+    deleteAllBoards(boardIds);
+    setBoardData([]);
+  };
+
   const updateLikes = cardToUpdate => {};
 
   useEffect(() => {
