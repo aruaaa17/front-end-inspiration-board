@@ -1,0 +1,33 @@
+.card-list {
+    display: flex;
+    flex-direction: column;
+	justify-content: flex-start;
+    box-sizing: border-box;
+    width: 100%;
+    border: 10px;
+    padding: 5px;
+    /* Other Styles */
+	font-family: "Inter", sans-serif;
+	line-height: 1.5;
+	/* background-color: #19a9ec; */
+}
+
+.card-list h2 {
+    margin-bottom: 10px; /* Add spacing between the heading and the cards */
+    /* Add other styling later */
+}
+
+.card-list ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* Add other styling later */
+}
+
+.card-list li {
+    flex: 0 0 calc(33.33% - 20px); /* Adjust the width of each card */
+    margin: 10px;
+    /* Add other styling later */
+}
