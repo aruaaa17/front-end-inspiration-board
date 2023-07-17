@@ -37,7 +37,7 @@ const App = () => {
   const [boardData, setBoardData] = useState([]);
   const [currentBoard, setCurrentBoard] = useState({});
 
-  const loadBoards = () => {
+  const loadBoardsRequest = () => {
     axios
       .get('https://inspo-board-api.onrender.com/boards')
       .then(response => {
@@ -118,7 +118,7 @@ const App = () => {
     setCurrentBoard({ ...currentBoard, cards: newCardList });
   };
 
-  const deleteAllBoards = boardIds => {
+  const deleteAllBoardsRequest = boardIds => {
     axios
       .delete(`https://inspo-board-api.onrender.com/boards/${boardIds}`)
       .then(response => {
@@ -133,14 +133,27 @@ const App = () => {
     const boardIds = boardData.map(board => {
       return board.boardId;
     });
-    deleteAllBoards(boardIds);
+    deleteAllBoardsRequest(boardIds);
     setBoardData([]);
+  };
+
+  const updateLikesRequest = (cardToUpdate, likesCount) => {
+    axios
+      .patch(`https://inspo-board-api.onrender.com/${cardId}`, {
+        likesCount: cardToUpdate.likesCount,
+      })
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
   };
 
   const updateLikes = cardToUpdate => {};
 
   useEffect(() => {
-    loadBoards();
+    loadBoardsRequest();
   }, []);
 
   return (
