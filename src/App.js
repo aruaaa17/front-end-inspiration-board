@@ -51,6 +51,20 @@ const App = () => {
       });
   };
 
+  const boardPostRequest = boardToAdd => {
+    axios
+      .post(`https://inspo-board-api.onrender.com/boards`, {
+        title: boardToAdd.title,
+        owner: boardToAdd.owner,
+      })
+      .then(response => {
+        setBoardData([...boardData, response.data.board]);
+      })
+      .catch(error => {
+        console.log('error', error);
+      });
+  };
+
   const cardPostRequest = cardToAdd => {
     axios
       .post(
