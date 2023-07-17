@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Card = props => {
   const toggleDelete = () => {
-    // props.deleteCard(props.cardId);
+    props.deleteCard(props.cardId);
   };
 
   return (

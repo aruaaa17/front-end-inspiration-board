@@ -9,7 +9,7 @@ function NewCardForm(props) {
 
   const handleFormSubmit = event => {
     event.preventDefault();
-    // props.createNewCard(cardFormData);
+    props.createNewCard(cardFormData);
     setCardFormData({
       message: '',
     });
@@ -41,8 +41,8 @@ function NewCardForm(props) {
   );
 }
 
-// NewCardForm.propTypes = {
-//   createNewCard: PropTypes.func.isRequired,
-// };
+NewCardForm.propTypes = {
+  createNewCard: PropTypes.func.isRequired,
+};
 
 export default NewCardForm;

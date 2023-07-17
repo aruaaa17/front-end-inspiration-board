@@ -10,7 +10,7 @@ const INITIAL_BOARD = [
     boardId: 1,
     owner: 'nerdjal',
     title: '1st Board',
-    listOfCards: [
+    cards: [
       {
         cardId: 1,
         message: 'HELLO',
@@ -34,7 +34,78 @@ const INITIAL_BOARD = [
 ];
 
 const App = () => {
-  const [boardData, setBoardData] = useState(INITIAL_BOARD);
+  const [boardData, setBoardData] = useState([]);
+  const [currentBoard, setCurrentBoard] = useState({});
+
+  const loadBoards = () => {
+    axios
+      .get('https://inspo-board-api.onrender.com/boards')
+      .then(response => {
+        const boards = response.data.map(board => {
+          return { ...board };
+        });
+        setBoardData(boards);
+      })
+      .catch(error => {
+        console.log('error', error);
+      });
+  };
+
+  const cardPostRequest = cardToAdd => {
+    axios
+      .post(
+        `https://inspo-board-api.onrender.com/${currentBoard.boardId}/cards`,
+        {
+          message: cardToAdd.message,
+        }
+      )
+      .then(response => {
+        console.log(response.data);
+        axios
+          .get(
+            `https://inspo-board-api.onrender.com/boards/${response.data.cards.cardId}`
+          )
+          .then(response => {
+            console.log(response.data.card);
+            // setCurrentBoard([...currentBoard, response.data.card]);
+          })
+          .catch(error => {
+            console.log('error', error);
+          });
+      })
+      .catch(error => {
+        console.log(error.data);
+      });
+  };
+
+  const deleteCardRequest = cardId => {
+    axios
+      .delete(`https://inspo-board-api.onrender.com/cards/${cardId}`)
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  };
+
+  const deleteCard = cardToDelete => {
+    const newCardList = currentBoard.cards.filter(
+      card => card.carIid !== cardToDelete.cardId
+    );
+    deleteCardRequest(cardToDelete.cardId);
+    setCurrentBoard({ ...currentBoard, cards: newCardList });
+  };
+
+  const updateLikes = cardToUpdate => {};
+
+  const createNewBoard = newBoard => {};
+
+  const createNewCard = newCard => {};
+
+  useEffect(() => {
+    loadBoards();
+  }, []);
 
   return (
     <section className='App'>
@@ -43,7 +114,7 @@ const App = () => {
         <h1 className='title'>Inspiration Board</h1>
         <section className='boards-container'>
           <BoardList className='boards-names' boardData={boardData} />
-          <Board className='board' board={boardData[0]} />
+          <Board className='board' board={currentBoard} />
           <NewBoardForm className='new-board-form' />
         </section>
       </main>

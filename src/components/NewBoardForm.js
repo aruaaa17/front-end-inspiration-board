@@ -17,7 +17,7 @@ const NewBoardForm = props => {
 
   const handleFormSubmit = event => {
     event.preventDefault();
-    // props.createNewBoard(boardFormData);
+    props.createNewBoard(boardFormData);
     setBoardFormData({
       title: '',
       owner: '',
@@ -55,8 +55,8 @@ const NewBoardForm = props => {
   );
 };
 
-// NewBoardForm.propTypes = {
-//   createNewBoard: PropTypes.func.isRequired,
-// };
+NewBoardForm.propTypes = {
+  createNewBoard: PropTypes.func.isRequired,
+};
 
 export default NewBoardForm;
