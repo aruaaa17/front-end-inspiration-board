@@ -197,7 +197,7 @@ const loadBoardsRequest2 = () => {
 
   const boardComponent = () => {
     if (Object.keys(currentBoard).length === 0 || !currentBoard) {
-      return <p>Select a Board from the Board List!</p>;
+      return <p className='notes'>Select a Board from the Board List!</p>;
     }
     return (
       <Board
@@ -232,7 +232,7 @@ const loadBoardsRequest2 = () => {
           <section className='grid'>{boardComponent()}</section>
         </section>
       </main>
-      <footer>
+      <footer className='footer'>
         Click{' '}
         <span
           className='footer__delete-btn'
