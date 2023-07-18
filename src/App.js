@@ -118,10 +118,13 @@ const App = () => {
 
   const createNewCard = newCard => {
     cardPostRequest(newCard);
+    const newCards = currentBoard.cards.add(newCard);
+    setCurrentBoard({...currentBoard, newCards});
   };
 
   const createNewBoard = newBoard => {
     boardPostRequest(newBoard);
+    setBoardData(newBoard);
   };
 
   const deleteCardRequest = cardId => {
@@ -165,7 +168,7 @@ const App = () => {
   const updateLikesRequest = cardToUpdate => {
     axios
       .patch(`https://inspo-board-api.onrender.com/${cardToUpdate.cardId}`, {
-        likes_count: cardToUpdate.likesCount,
+        likes_count: cardToUpdate.likesCount
       })
       .then(response => {
         console.log(response);
