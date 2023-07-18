@@ -1,6 +1,15 @@
-body {
-  font: 1em/1.618 Inter, sans-serif;
 
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Pangolin&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Delius&display=swap');
+
+body {
+  /* font: 1em/1.618 Inter, sans-serif; */
+  font-family: 'Delius', cursive;
+  font-size: large;
+  font-weight: 300;
+  /* font-family: 'Playfair Display', serif; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,6 +21,16 @@ body {
   background:
     url(https://images.unsplash.com/photo-1635776062360-af423602aff3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2832&q=80)
     center / cover no-repeat fixed;
+}
+
+h1 {
+  /* font-family: 'Playfair Display', serif; */
+  font-family: 'Pangolin', cursive;
+  font-size: 260%;
+}
+
+h2 {
+  font-family: 'Permanent Marker', cursive;
 }
 
 .App {
