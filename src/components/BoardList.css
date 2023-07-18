@@ -3,6 +3,7 @@
     overflow-y: scroll;
     position: relative;
     height: 200px;
+    padding: 0;
 }
 
 /* Unfinished Scrollbar */
