@@ -9,14 +9,19 @@
     /* Other Styles */
 	font-family: "Inter", sans-serif;
 	line-height: 1.5;
-	/* background-color: #19a9ec; */
+	/* background-color: #19a9ec; Change this with Real-Board Image */
+    background-image: url("https://mcdn.wallpapersafari.com/medium/98/32/DiOBz1.jpg");
 }
 
-.card-list h2 {
+.card-list > h2 {
     margin-bottom: 10px; /* Add spacing between the heading and the cards */
     /* Add other styling later */
+    text-align: center;
 }
 
+.card-list > h2::before {
+    background-color: transparent;
+}
 .card-list ul {
     list-style: none;
     padding: 0;
@@ -31,3 +36,4 @@
     margin: 10px;
     /* Add other styling later */
 }
+
