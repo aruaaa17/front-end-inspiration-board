@@ -12,7 +12,7 @@
 	/* background-color: #19a9ec; Change this with Real-Board Image */
     background-image: url("https://mcdn.wallpapersafari.com/medium/98/32/DiOBz1.jpg");
     background-repeat: no-repeat;
-    background-size: 100% 100%;
+    background-size: contain;
 }
 
 .card-list > h2 {
