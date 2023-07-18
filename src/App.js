@@ -4,6 +4,7 @@ import './App.css';
 import Board from './components/Board';
 import BoardList from './components/BoardList';
 import NewBoardForm from './components/NewBoardForm';
+import { loadBoardsRequest } from './api/apiRequests'
 
 const INITIAL_BOARD = [
   {
@@ -37,21 +38,14 @@ const App = () => {
   const [boardData, setBoardData] = useState([]);
   const [currentBoard, setCurrentBoard] = useState({});
 
-  const loadBoardsRequest = () => {
-    axios
-      .get('https://inspo-board-api.onrender.com/boards')
-      .then(response => {
-        const boards = response.data.map(board => {
-          board.boardId = board.board_id;
-          delete board.board_id;
-          return board;
-        });
-        setBoardData(boards);
-      })
-      .catch(error => {
-        console.log('error', error);
-      });
-  };
+const loadBoardsRequest2 = () => {
+  loadBoardsRequest().then(boards => {
+    setBoardData(boards);
+  })
+    .catch(error => {
+      console.log('error', error);
+    });
+};
 
   const createCurrentBoard = board => {
     const setBoards = boardId => {
@@ -87,6 +81,10 @@ const App = () => {
         owner: boardToAdd.owner,
       })
       .then(response => {
+
+        console.log(boardData)
+        response.data.boardId = response.data.board_id;
+        delete response.data.board_id;
         setBoardData([...boardData, response.data]);
       })
       .catch(error => {
@@ -104,8 +102,18 @@ const App = () => {
         }
       )
       .then(response => {
-        const cards = [...currentBoard.cards, response.data];
-        setCurrentBoard({ ...currentBoard, cards });
+        console.log(response.data);
+        const card = response.data;
+        card.cardId = card.card_id;
+        card.boardId = card.board_id;
+        card.likesCount = card.likes_count;
+        delete card.card_id;
+        delete card.board_id;
+        delete card.likes_count;
+        currentBoard.cards.push(card);  
+        setCurrentBoard({...currentBoard});
+
+
       })
       .catch(error => {
         console.log(error.data);
@@ -114,13 +122,10 @@ const App = () => {
 
   const createNewCard = newCard => {
     cardPostRequest(newCard);
-    const newCards = currentBoard.cards.add(newCard);
-    setCurrentBoard({...currentBoard, newCards});
   };
 
   const createNewBoard = newBoard => {
     boardPostRequest(newBoard);
-    setBoardData(newBoard);
   };
 
   const deleteCardRequest = cardId => {
@@ -186,7 +191,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    loadBoardsRequest();
+    loadBoardsRequest2();
   }, []);
 
   const boardComponent = () => {
