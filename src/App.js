@@ -161,6 +161,7 @@ const loadBoardsRequest2 = () => {
   const deleteBoards = boardData => {
     deleteAllBoardsRequest();
     setBoardData([]);
+    setCurrentBoard({});
   };
 
   const updateLikesRequest = cardToUpdate => {
