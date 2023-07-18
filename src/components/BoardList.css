@@ -1,5 +1,8 @@
 .boards-list {
-    overflow: scroll;
+    width: 450px;
+    overflow-y: scroll;
+    position: relative;
+    height: 200px;
 }
 
 /* Unfinished Scrollbar */
