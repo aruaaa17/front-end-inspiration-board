@@ -1,23 +1,40 @@
-.board {
+/* This is for Selected Board + Create Card Form + Board Display */
+/* .board {
     display: grid;
     grid-template-rows: 1fr 1fr;
     justify-items: stretch;
+} */
+.board {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(5, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 20px;
+}
+    
+.selected-board { 
+    grid-area: 1 / 1 / 2 / 4; 
+    display: grid;
 }
 
-.display {
+.cards-container { 
+    grid-area: 2 / 1 / 6 / 4;
+    display: grid;
+    grid-gap: 30px;
+}
+
+.new-card-form { 
+    grid-area: 1 / 4 / 3 / 6; 
+}
+
+
+/* .display {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 30px;
-}
+} */
 
 
 .selected-board p {
     margin: 30px;
-}
-
-.cards-container {
-    grid-template-columns: 1fr;
-    display: grid;
-    /* padding: 30px 0 30px 0; */
-    grid-gap: 30px;
 }
