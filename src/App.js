@@ -35,20 +35,54 @@ const INITIAL_BOARD = [
 
 const App = () => {
   const [boardData, setBoardData] = useState([]);
-  const [currentBoard, setCurrentBoard] = useState({});
+  const [currentBoard, setCurrentBoard] = useState({
+    boardId: 0,
+    title: 'empty',
+    owner: 'empty',
+    cards: [{ cardId: 0, message: 'empty', boardId: 0 }],
+  });
 
   const loadBoardsRequest = () => {
     axios
       .get('https://inspo-board-api.onrender.com/boards')
       .then(response => {
         const boards = response.data.map(board => {
-          return { ...board };
+          board.boardId = board.board_id;
+          delete board.board_id;
+          return board;
         });
         setBoardData(boards);
       })
       .catch(error => {
         console.log('error', error);
       });
+  };
+
+  const createCurrentBoard = board => {
+    const setBoards = boardId => {
+      axios
+        .get(`https://inspo-board-api.onrender.com/boards/${boardId}/cards`)
+        .then(response => {
+          if (response.data === undefined) {
+            board.cards = [];
+          }
+          const cards = response.data.cards.map(card => {
+            card.cardId = card.card_id;
+            card.boardId = card.board_id;
+            card.likesCount = card.likes_count;
+            delete card.card_id;
+            delete card.board_id;
+            delete card.likes_count;
+            return card;
+          });
+          board.cards = cards;
+          setCurrentBoard(board);
+        })
+        .catch(error => {
+          console.log('error', error);
+        });
+    };
+    setBoards(board.boardId);
   };
 
   const boardPostRequest = boardToAdd => {
@@ -58,7 +92,7 @@ const App = () => {
         owner: boardToAdd.owner,
       })
       .then(response => {
-        setBoardData([...boardData, response.data.board]);
+        setBoardData([...boardData, response.data]);
       })
       .catch(error => {
         console.log('error', error);
@@ -73,18 +107,9 @@ const App = () => {
           message: cardToAdd.message,
         }
       )
-      .then(() => {
-        axios
-          .get(
-            `https://inspo-board-api.onrender.com/${currentBoard.boardId}/cards`
-          )
-          .then(response => {
-            console.log(response.data);
-            setCurrentBoard(response.data);
-          })
-          .catch(error => {
-            console.log('error', error);
-          });
+      .then(response => {
+        const cards = [...currentBoard.cards, response.data];
+        setCurrentBoard({ ...currentBoard, cards });
       })
       .catch(error => {
         console.log(error.data);
@@ -112,7 +137,7 @@ const App = () => {
 
   const deleteCard = cardToDelete => {
     const newCardList = currentBoard.cards.filter(
-      card => card.carIid !== cardToDelete.cardId
+      card => card.cardId !== cardToDelete.cardId
     );
     deleteCardRequest(cardToDelete.cardId);
     setCurrentBoard({ ...currentBoard, cards: newCardList });
@@ -140,7 +165,7 @@ const App = () => {
   const updateLikesRequest = cardToUpdate => {
     axios
       .patch(`https://inspo-board-api.onrender.com/${cardToUpdate.cardId}`, {
-        likesCount: cardToUpdate.likesCount + 1,
+        likes_count: cardToUpdate.likesCount,
       })
       .then(response => {
         console.log(response);
@@ -154,6 +179,7 @@ const App = () => {
     const updatedCards = currentBoard.cards.map(card => {
       if (card.cardId === cardToUpdate.cardId) {
         updateLikesRequest(cardToUpdate);
+        card.likesCount = cardToUpdate.likesCount;
       }
       return card;
     });
@@ -172,8 +198,15 @@ const App = () => {
       <main className='App-main'>
         <section className='boards-container'>
           <section className='two-col'>
-            <BoardList className='boards-names' boardData={boardData} />
-            <NewBoardForm className='new-board-form' />
+            <BoardList
+              className='boards-names'
+              boardData={boardData}
+              createCurrentBoard={createCurrentBoard}
+            />
+            <NewBoardForm
+              className='new-board-form'
+              createNewBoard={createNewBoard}
+            />
           </section>
           <section className='grid'>
             <Board
@@ -187,7 +220,16 @@ const App = () => {
           </section>
         </section>
       </main>
-      {/* <footer>Click <span className="footer__delete-btn">here</span> to delete all boards and cards!</footer> */}
+      <footer>
+        Click{' '}
+        <span
+          className='footer__delete-btn'
+          onClick={() => deleteBoards(boardData)}
+        >
+          here
+        </span>{' '}
+        to delete all boards and cards!
+      </footer>
     </section>
   );
 };
