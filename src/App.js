@@ -35,12 +35,7 @@ const INITIAL_BOARD = [
 
 const App = () => {
   const [boardData, setBoardData] = useState([]);
-  const [currentBoard, setCurrentBoard] = useState({
-    boardId: 0,
-    title: 'empty',
-    owner: 'empty',
-    cards: [{ cardId: 0, message: 'empty', boardId: 0 }],
-  });
+  const [currentBoard, setCurrentBoard] = useState({});
 
   const loadBoardsRequest = () => {
     axios
@@ -164,9 +159,12 @@ const App = () => {
 
   const updateLikesRequest = cardToUpdate => {
     axios
-      .patch(`https://inspo-board-api.onrender.com/${cardToUpdate.cardId}`, {
-        likes_count: cardToUpdate.likesCount,
-      })
+      .patch(
+        `https://inspo-board-api.onrender.com/cards/${cardToUpdate.cardId}`,
+        {
+          likes_count: cardToUpdate.likesCount,
+        }
+      )
       .then(response => {
         console.log(response);
       })
@@ -190,6 +188,22 @@ const App = () => {
     loadBoardsRequest();
   }, []);
 
+  const boardComponent = () => {
+    if (Object.keys(currentBoard).length === 0 || !currentBoard) {
+      return <p>Select a Board from the Board List!</p>;
+    }
+    return (
+      <Board
+        className='board'
+        board={currentBoard}
+        updateLikes={updateLikes}
+        deleteCard={deleteCard}
+        createNewCard={createNewCard}
+        createNewBoard={createNewBoard}
+      />
+    );
+  };
+
   return (
     <section className='App'>
       <header className='App-header'>
@@ -208,16 +222,7 @@ const App = () => {
               createNewBoard={createNewBoard}
             />
           </section>
-          <section className='grid'>
-            <Board
-              className='board'
-              board={currentBoard}
-              updateLikes={updateLikes}
-              deleteCard={deleteCard}
-              createNewCard={createNewCard}
-              createNewBoard={createNewBoard}
-            />
-          </section>
+          <section className='grid'>{boardComponent()}</section>
         </section>
       </main>
       <footer>

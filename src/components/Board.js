@@ -4,10 +4,6 @@ import CardList from './CardList';
 import NewCardForm from './NewCardForm';
 
 const Board = props => {
-  if (props.board.boardId === 0) {
-    return <p>Select a Board from the Board List!</p>;
-  }
-
   return (
     <section className='board'>
       <section className='display'>
@@ -48,14 +44,6 @@ Board.propTypes = {
       })
     ),
   }),
-  updateLikes: PropTypes.func.isRequired,
-  deleteCard: PropTypes.func.isRequired,
-  createNewCard: PropTypes.func.isRequired,
-  createNewBoard: PropTypes.func.isRequired,
-};
-
-Board.defaultProps = {
-  board: PropTypes.shape({}),
   updateLikes: PropTypes.func.isRequired,
   deleteCard: PropTypes.func.isRequired,
   createNewCard: PropTypes.func.isRequired,

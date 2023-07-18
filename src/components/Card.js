@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const Card = props => {
   const toggleDelete = () => {
-    props.deleteCard(props.cardId);
+    props.deleteCard(props);
   };
 
   const toggleLike = () => {
@@ -15,7 +15,7 @@ const Card = props => {
       <p>{props.message}</p>
       <section className='card-active-bar'>
         <p>
-          {props.likesCount} <span onclick={toggleLike}> 💕 </span>
+          {props.likesCount} <span onClick={toggleLike}> 💕 </span>
         </p>
         <p onClick={toggleDelete} className='delete'>
           Delete
