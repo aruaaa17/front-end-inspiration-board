@@ -47,20 +47,40 @@ const App = () => {
       .get('https://inspo-board-api.onrender.com/boards')
       .then(response => {
         const boards = response.data.map(board => {
-          const caseFixedCards = board.cards.map(card => {
-            return {
-              ...card,
-              likesCount: card.likes_count,
-              cardId: card.card_id,
-            };
-          });
-          return { ...board, boardId: board.board_id, cards: caseFixedCards };
+          board.boardId = board.board_id;
+          delete board.board_id;
+          return board;
         });
         setBoardData(boards);
       })
       .catch(error => {
         console.log('error', error);
       });
+  };
+
+  const createCurrentBoard = board => {
+    const setBoards = boardId => {
+      axios
+        .get(`https://inspo-board-api.onrender.com/boards/${boardId}/cards`)
+        .then(response => {
+          console.log('response data', response.data);
+          if (response.data === undefined) {
+            board.cards = [];
+          }
+          const cards = response.data.cards.map(card => {
+            card.cardId = card.card_id;
+            card.likesCount = card.likes_count;
+            delete card.card_id;
+            delete card.likes_count;
+            return card;
+          });
+          board.cards = cards;
+        })
+        .catch(error => {
+          console.log('error', error);
+        });
+    };
+    setCurrentBoard(setBoards(board.boardId));
   };
 
   const boardPostRequest = boardToAdd => {
@@ -115,7 +135,7 @@ const App = () => {
 
   const deleteCard = cardToDelete => {
     const newCardList = currentBoard.cards.filter(
-      card => card.carIid !== cardToDelete.cardId
+      card => card.cardId !== cardToDelete.cardId
     );
     deleteCardRequest(cardToDelete.cardId);
     setCurrentBoard({ ...currentBoard, cards: newCardList });
@@ -175,8 +195,15 @@ const App = () => {
       <main className='App-main'>
         <section className='boards-container'>
           <section className='two-col'>
-            <BoardList className='boards-names' boardData={boardData} />
-            <NewBoardForm className='new-board-form' />
+            <BoardList
+              className='boards-names'
+              boardData={boardData}
+              createCurrentBoard={createCurrentBoard}
+            />
+            <NewBoardForm
+              className='new-board-form'
+              createNewBoard={createNewBoard}
+            />
           </section>
           <section className='grid'>
             <Board
@@ -190,7 +217,16 @@ const App = () => {
           </section>
         </section>
       </main>
-      {/* <footer>Click <span className="footer__delete-btn">here</span> to delete all boards and cards!</footer> */}
+      <footer>
+        Click{' '}
+        <span
+          className='footer__delete-btn'
+          onClick={() => deleteBoards(boardData)}
+        >
+          here
+        </span>{' '}
+        to delete all boards and cards!
+      </footer>
     </section>
   );
 };

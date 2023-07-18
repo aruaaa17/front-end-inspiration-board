@@ -7,6 +7,7 @@ const CardList = props => {
     <section className='card-list'>
       <h2>Cards For {props.boardTitle}</h2>
       <ul>
+        {console.log('cardlist props cards print', props.cards)}
         {props.cards.map(card => (
           <li key={card.cardId}>
             <Card

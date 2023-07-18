@@ -7,6 +7,7 @@ const NewBoardForm = props => {
     title: '',
     owner: '',
   });
+  const [showComponent, setShowComponent] = useState(true);
 
   const updateBoardForm = event => {
     setBoardFormData({
@@ -23,6 +24,20 @@ const NewBoardForm = props => {
       owner: '',
     });
   };
+
+  if (!showComponent) {
+    return (
+      <section className='new-board-form'>
+        <h2>Create a New Board</h2>
+        <button
+          className='new-board-form_hide'
+          onClick={() => setShowComponent(!showComponent)}
+        >
+          Show New Board Form
+        </button>
+      </section>
+    );
+  }
 
   return (
     <section className='new-board-form'>
@@ -50,7 +65,12 @@ const NewBoardForm = props => {
           <input type='submit' value='Add New Board' />
         </section>
       </form>
-      <span className='new-board-form_hide'>Hide New Board Form</span>
+      <button
+        className='new-board-form_hide'
+        onClick={() => setShowComponent(!showComponent)}
+      >
+        Hide New Board Form
+      </button>
     </section>
   );
 };

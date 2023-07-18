@@ -4,7 +4,9 @@ import './BoardList.css';
 
 const BoardList = props => {
   const getBoardsNames = boards => {
-    return boards.map(board => <li>{board.title}</li>);
+    return boards.map(board => (
+      <li onClick={() => props.createCurrentBoard(board)}>{board.title}</li>
+    ));
   };
   return (
     <section>
@@ -23,6 +25,7 @@ BoardList.propTypes = {
       cards: PropTypes.array,
     })
   ).isRequired,
+  createCurrentBoard: PropTypes.func.isRequired,
 };
 
 export default BoardList;

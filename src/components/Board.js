@@ -47,7 +47,15 @@ Board.propTypes = {
         boardId: PropTypes.number.isRequired,
       })
     ),
-  }).isRequired,
+  }),
+  updateLikes: PropTypes.func.isRequired,
+  deleteCard: PropTypes.func.isRequired,
+  createNewCard: PropTypes.func.isRequired,
+  createNewBoard: PropTypes.func.isRequired,
+};
+
+Board.defaultProps = {
+  board: PropTypes.shape({}),
   updateLikes: PropTypes.func.isRequired,
   deleteCard: PropTypes.func.isRequired,
   createNewCard: PropTypes.func.isRequired,
