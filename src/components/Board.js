@@ -6,17 +6,15 @@ import NewCardForm from './NewCardForm';
 const Board = props => {
   return (
     <section className='board'>
-      <section className='display'>
-        <section className='selected-board'>
-          <h2>Selected Board</h2>
-          <p>
-            Board owner:{props.board.owner}
-            title:{props.board.title}
-          </p>
-        </section>
-        <section className='new-card-form'>
-          <NewCardForm createNewCard={props.createNewCard} />
-        </section>
+      <section className='selected-board'>
+        <h2>Selected Board</h2>
+        <p>
+          Board owner:{props.board.owner}
+          title:{props.board.title}
+        </p>
+      </section>
+      <section className='new-card-form'>
+        <NewCardForm createNewCard={props.createNewCard} />
       </section>
       <section className='cards-container'>
         <CardList
