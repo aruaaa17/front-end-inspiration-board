@@ -95,9 +95,10 @@ const App = () => {
   };
 
   const cardPostRequest = cardToAdd => {
+    console.log('card to add', cardToAdd.message);
     axios
       .post(
-        `https://inspo-board-api.onrender.com/${currentBoard.boardId}/cards`,
+        `https://inspo-board-api.onrender.com/boards/${currentBoard.boardId}/cards`,
         {
           message: cardToAdd.message,
         }
@@ -138,9 +139,9 @@ const App = () => {
     setCurrentBoard({ ...currentBoard, cards: newCardList });
   };
 
-  const deleteAllBoardsRequest = boardIds => {
+  const deleteAllBoardsRequest = () => {
     axios
-      .delete(`https://inspo-board-api.onrender.com/boards/${boardIds}`)
+      .delete(`https://inspo-board-api.onrender.com/boards`)
       .then(response => {
         console.log(response);
       })
@@ -150,10 +151,7 @@ const App = () => {
   };
 
   const deleteBoards = boardData => {
-    const boardIds = boardData.map(board => {
-      return board.boardId;
-    });
-    deleteAllBoardsRequest(boardIds);
+    deleteAllBoardsRequest();
     setBoardData([]);
   };
 
