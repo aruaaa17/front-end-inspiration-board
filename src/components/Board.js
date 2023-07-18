@@ -10,6 +10,8 @@ const Board = props => {
         <h2>Selected Board</h2>
         <p>
           Board owner:{props.board.owner}
+        </p>
+        <p>
           title:{props.board.title}
         </p>
       </section>
