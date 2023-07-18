@@ -1,7 +1,5 @@
-/* .boards-list {
-    overflow: auto;
-    scrollbar-color: #6969dd #e0e0e0;
-    scrollbar-width: thin;
-} */
+.boards-list {
+    overflow: scroll;
+}
 
 /* Unfinished Scrollbar */
