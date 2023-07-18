@@ -14,8 +14,8 @@ const Board = props => {
         <section className='selected-board'>
           <h2>Selected Board</h2>
           <p>
-            Board owner:{props.owner}
-            title:{props.title}
+            Board owner:{props.board.owner}
+            title:{props.board.title}
           </p>
         </section>
         <section className='new-card-form'>
@@ -24,8 +24,8 @@ const Board = props => {
       </section>
       <section className='cards-container'>
         <CardList
-          cards={props.cards}
-          boardTitle={props.title}
+          cards={props.board.cards}
+          boardTitle={props.board.title}
           updateLikes={props.updateLikes}
           deleteCard={props.deleteCard}
         ></CardList>

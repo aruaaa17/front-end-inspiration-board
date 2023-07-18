@@ -63,24 +63,26 @@ const App = () => {
       axios
         .get(`https://inspo-board-api.onrender.com/boards/${boardId}/cards`)
         .then(response => {
-          console.log('response data', response.data);
           if (response.data === undefined) {
             board.cards = [];
           }
           const cards = response.data.cards.map(card => {
             card.cardId = card.card_id;
+            card.boardId = card.board_id;
             card.likesCount = card.likes_count;
             delete card.card_id;
+            delete card.board_id;
             delete card.likes_count;
             return card;
           });
           board.cards = cards;
+          setCurrentBoard(board);
         })
         .catch(error => {
           console.log('error', error);
         });
     };
-    setCurrentBoard(setBoards(board.boardId));
+    setBoards(board.boardId);
   };
 
   const boardPostRequest = boardToAdd => {
@@ -107,7 +109,7 @@ const App = () => {
       )
       .then(response => {
         const cards = [...currentBoard.cards, response.data];
-        setCurrentBoard([...currentBoard, cards]);
+        setCurrentBoard({ ...currentBoard, cards });
       })
       .catch(error => {
         console.log(error.data);
@@ -163,7 +165,7 @@ const App = () => {
   const updateLikesRequest = cardToUpdate => {
     axios
       .patch(`https://inspo-board-api.onrender.com/${cardToUpdate.cardId}`, {
-        likes_count: cardToUpdate.likesCount + 1,
+        likes_count: cardToUpdate.likesCount,
       })
       .then(response => {
         console.log(response);
@@ -177,6 +179,7 @@ const App = () => {
     const updatedCards = currentBoard.cards.map(card => {
       if (card.cardId === cardToUpdate.cardId) {
         updateLikesRequest(cardToUpdate);
+        card.likesCount = cardToUpdate.likesCount;
       }
       return card;
     });

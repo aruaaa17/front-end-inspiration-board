@@ -5,7 +5,9 @@ import './BoardList.css';
 const BoardList = props => {
   const getBoardsNames = boards => {
     return boards.map(board => (
-      <li onClick={() => props.createCurrentBoard(board)}>{board.title}</li>
+      <li key={board.boardId} onClick={() => props.createCurrentBoard(board)}>
+        {board.title}
+      </li>
     ));
   };
   return (

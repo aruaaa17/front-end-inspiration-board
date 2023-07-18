@@ -6,11 +6,17 @@ const Card = props => {
     props.deleteCard(props.cardId);
   };
 
+  const toggleLike = () => {
+    props.updateLikes({ ...props, likesCount: props.likesCount + 1 });
+  };
+
   return (
     <section className='Card'>
       <p>{props.message}</p>
       <section className='card-active-bar'>
-        <p>{props.likesCount} 💕</p>
+        <p>
+          {props.likesCount} <span onclick={toggleLike}> 💕 </span>
+        </p>
         <p onClick={toggleDelete} className='delete'>
           Delete
         </p>
