@@ -35,14 +35,26 @@ const INITIAL_BOARD = [
 
 const App = () => {
   const [boardData, setBoardData] = useState([]);
-  const [currentBoard, setCurrentBoard] = useState({});
+  const [currentBoard, setCurrentBoard] = useState({
+    boardId: 0,
+    title: 'empty',
+    owner: 'empty',
+    cards: [{ cardId: 0, message: 'empty', boardId: 0 }],
+  });
 
   const loadBoardsRequest = () => {
     axios
       .get('https://inspo-board-api.onrender.com/boards')
       .then(response => {
         const boards = response.data.map(board => {
-          return { ...board };
+          const caseFixedCards = board.cards.map(card => {
+            return {
+              ...card,
+              likesCount: card.likes_count,
+              cardId: card.card_id,
+            };
+          });
+          return { ...board, boardId: board.board_id, cards: caseFixedCards };
         });
         setBoardData(boards);
       })
@@ -58,7 +70,7 @@ const App = () => {
         owner: boardToAdd.owner,
       })
       .then(response => {
-        setBoardData([...boardData, response.data.board]);
+        setBoardData([...boardData, response.data]);
       })
       .catch(error => {
         console.log('error', error);
@@ -73,18 +85,9 @@ const App = () => {
           message: cardToAdd.message,
         }
       )
-      .then(() => {
-        axios
-          .get(
-            `https://inspo-board-api.onrender.com/${currentBoard.boardId}/cards`
-          )
-          .then(response => {
-            console.log(response.data);
-            setCurrentBoard(response.data);
-          })
-          .catch(error => {
-            console.log('error', error);
-          });
+      .then(response => {
+        const cards = [...currentBoard.cards, response.data];
+        setCurrentBoard([...currentBoard, cards]);
       })
       .catch(error => {
         console.log(error.data);
@@ -140,7 +143,7 @@ const App = () => {
   const updateLikesRequest = cardToUpdate => {
     axios
       .patch(`https://inspo-board-api.onrender.com/${cardToUpdate.cardId}`, {
-        likesCount: cardToUpdate.likesCount + 1,
+        likes_count: cardToUpdate.likesCount + 1,
       })
       .then(response => {
         console.log(response);
