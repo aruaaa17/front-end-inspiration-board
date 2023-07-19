@@ -16,7 +16,7 @@ const Card = props => {
       <p>{props.message}</p>
       <section className='card-active-bar'>
         <p>
-          {props.likesCount} <span onClick={toggleLike}> 💕 </span>
+          {props.likesCount} <span className='heart' onClick={toggleLike}> 💕 </span>
         </p>
         <p onClick={toggleDelete} className='delete'>
           Delete

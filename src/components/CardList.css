@@ -1,49 +1,49 @@
-
 .card-list {
-    display: grid;
-    grid-template-columns: 3fr;
-    grid-template-rows: 50px 3fr;
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-    /* Styles for pin board */
-    border: 30px solid transparent;
-    height: fit-content;
-    width: 80%;
-    min-height: 500px;
-    min-width: 600px;
-    background-image: url("http://res.cloudinary.com/cspaveljb/image/upload/v1499110969/cork_w2tt25.jpg");
-    background-size: 1300px;
-    border-image-source: url("http://res.cloudinary.com/cspaveljb/image/upload/v1499110958/corkborder_f8cm3g.png");
-    border-image-slice: 31 29;
-    border-image-width: 31px 29px;
-    overflow: hidden;
-    position: relative;
+	display: grid;
+	grid-template-columns: 3fr;
+	grid-template-rows: 50px 3fr;
+	grid-column-gap: 0px;
+	grid-row-gap: 0px;
+	/* Styles for pin board */
+	border: 30px solid transparent;
+	height: fit-content;
+	width: 80%;
+	min-height: 500px;
+	min-width: 600px;
+	background-image: url("http://res.cloudinary.com/cspaveljb/image/upload/v1499110969/cork_w2tt25.jpg");
+	background-size: 1300px;
+	border-image-source: url("http://res.cloudinary.com/cspaveljb/image/upload/v1499110958/corkborder_f8cm3g.png");
+	border-image-slice: 31 29;
+	border-image-width: 31px 29px;
+	overflow: hidden;
+	position: relative;
 }
 
 .card-list h2 {
-    grid-area: 1 / 1 / 2 / 2;
-    margin-bottom: 10px; /* Add spacing between the heading and the cards */
-    /* Add other styling later */
-    text-align: center;
+	grid-area: 1 / 1 / 2 / 2;
+	/* Add other styling later */
+	text-align: center;
+	font-size: 30px;
 }
 
 .card-list > h2::before {
-    background-color: transparent;
+	background-color: transparent;
 }
 .card-list ul {
-    grid-gap: 30px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    list-style: none;
-    padding: 0;
-    justify-content: flex-start;
-    align-items: flex-start;
-    align-content: flex-start;
+	grid-gap: 30px;
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	list-style: none;
+	padding: 0;
+	justify-content: flex-start;
+	align-items: flex-start;
+	align-content: flex-start;
+	margin-top: 3em;
 }
 
 .card-list li {
-    flex: 0 0 calc(33.33% - 20px); /* Adjust the width of each card */
-    margin: 10px;
-    /* Add other styling later */
+	flex: 0 0 calc(33.33% - 20px); /* Adjust the width of each card */
+	margin: 10px;
+	/* Add other styling later */
 }
 
