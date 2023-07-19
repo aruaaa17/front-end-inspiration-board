@@ -121,6 +121,7 @@ h2:before {
   padding: 30px 0 30px 0;
   grid-gap: 30px;
   column-gap: 10em;
+  margin-bottom: 5em;
 }
 
 .two-col > section:nth-child(1), 

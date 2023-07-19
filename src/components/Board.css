@@ -7,13 +7,16 @@
 .board {
     display: grid;
     grid-template-columns: 3fr 1fr;
-    grid-template-rows: 1fr;
-    grid-column-gap: 30px;
-    grid-row-gap: 0px;
+    grid-template-rows: 1fr 1fr 3fr;
+    grid-column-gap: 10px;
+    grid-row-gap: 1em;
+    margin: 50px;
 }
     
 .selected-board { 
+    grid-row: 1;
     display: grid;
+    height: 40%;
 }
 
 .container1 {
@@ -22,12 +25,13 @@
 	flex-direction: row; 
 	flex-wrap: wrap; 
     justify-content: initial;
-    text-indent: 80px;
+    text-indent: 7em;
 }
 
 
 .new-card-form { 
     grid-area: 1 / 2 / 2 / 3; 
+    grid-row: 1/3;
 }
 
 
@@ -37,7 +41,15 @@
     grid-gap: 30px;
 } */
 
-
-.selected-board p {
-    margin: 30px;
+.deco {
+    font-size: 25px;
+    font-weight: bold;
 }
+
+.card-list {
+    grid-row: 2/4;
+}
+
+/* .board-select {
+    margin-top: 2em;
+} */

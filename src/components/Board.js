@@ -1,19 +1,20 @@
-import './Board.css';
+import React from 'react';
 import PropTypes from 'prop-types';
 import CardList from './CardList';
 import NewCardForm from './NewCardForm';
+import './Board.css';
 
 const Board = props => {
   return (
     <section className='board'>
       <section className='selected-board'>
-        <h2>Selected Board</h2>
+        <h2 className='board-select'>Selected Board</h2>
         <section className='container1'>
           <p>
-            Board Owner: {props.board.owner}
+            <span className='deco'>Board Title:</span> {props.board.title}
           </p>
           <p>
-            Title: {props.board.title}
+            <span className='deco'>Board Owner:</span> {props.board.owner}
           </p>
         </section>
       </section>
@@ -26,6 +27,8 @@ const Board = props => {
           updateLikes={props.updateLikes}
           deleteCard={props.deleteCard}
         ></CardList>
+
+
     </section>
   );
 };

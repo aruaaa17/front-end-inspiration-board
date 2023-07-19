@@ -10,5 +10,5 @@ export const loadBoardsRequest = () => {
           return board;
         });
         return (boards);
-      })
+      });
   };

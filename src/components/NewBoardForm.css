@@ -44,3 +44,7 @@ input[type="submit"]:hover, .new-board-form_hide:hover {
 	text-shadow: 1px 0px 1px rgb(195, 229, 245);
 	cursor: pointer;
 }
+
+/* .show {
+	position: center;
+} */

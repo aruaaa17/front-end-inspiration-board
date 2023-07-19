@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import './NewCardForm.css';
 import PropTypes from 'prop-types';
+import './NewCardForm.css';
 
 function NewCardForm(props) {
   const [cardFormData, setCardFormData] = useState({
@@ -41,14 +41,16 @@ function NewCardForm(props) {
     <section className='CardList'>
       <h2>Create a New Card</h2>
       <form className='stack' onSubmit={handleFormSubmit}>
-        <label htmlFor='cardMessage'>Message:</label>
-        <input
-          id='cardMessage'
-          name='message'
-          type='text'
-          value={cardFormData.message}
-          onChange={updateCardForm}
-        />
+        <section className='input-message'>
+          <label htmlFor='cardMessage'>Message:</label>
+          <input
+            id='cardMessage'
+            name='message'
+            type='text'
+            value={cardFormData.message}
+            onChange={updateCardForm}
+          />
+        </section>
         <section className='submit-card'>
           <input type='submit' value='Add New Card' />
         </section>

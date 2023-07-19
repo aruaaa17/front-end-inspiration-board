@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import './NewBoardForm.css';
 import PropTypes from 'prop-types';
+import './NewBoardForm.css';
 
 const NewBoardForm = props => {
   const [boardFormData, setBoardFormData] = useState({
@@ -47,7 +47,7 @@ const NewBoardForm = props => {
       <section className='new-board-form hidden'>
         <h2>Create a New Board</h2>
         <button
-          className='new-board-form_hide'
+          className='new-board-form_hide show'
           onClick={() => setShowComponent(!showComponent)}
         >
           Show New Board Form

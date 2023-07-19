@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './App.css';
 import Board from './components/Board';
 import BoardList from './components/BoardList';
 import NewBoardForm from './components/NewBoardForm';
+import './App.css';
 import { loadBoardsRequest } from './api/apiRequests';
 
 const App = () => {
