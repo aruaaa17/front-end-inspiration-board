@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import './BoardList.css';
 
 const BoardList = props => {
-
   const getBoardsNames = boards => {
     return boards.map(board => (
       <li key={board.boardId} onClick={() => props.createCurrentBoard(board)}>
@@ -13,7 +12,7 @@ const BoardList = props => {
   };
 
   return (
-    <section>
+    <section className='boards'>
       <h2>Boards</h2>
       <ul className='boards-list'>{getBoardsNames(props.boardData)}</ul>
     </section>

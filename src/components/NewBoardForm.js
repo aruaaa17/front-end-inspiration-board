@@ -60,23 +60,25 @@ const NewBoardForm = props => {
     <section className='new-board-form'>
       <h2>Create a New Board</h2>
       <form onSubmit={handleFormSubmit} className='stack'>
-        <section className='form-title'>
-          <label htmlFor='title'>Board Title:</label>
-          <input
-            name='title'
-            type='text'
-            value={boardFormData.title}
-            onChange={updateBoardForm}
-          />
-        </section>
-        <section className='title-owner'>
-          <label htmlFor='owner'>Owner's Name:</label>
-          <input
-            name='owner'
-            type='text'
-            value={boardFormData.owner}
-            onChange={updateBoardForm}
-          />
+        <section className='input-form'>
+          <section className='form-title'>
+            <label htmlFor='title'>Board Title:</label>
+            <input
+              name='title'
+              type='text'
+              value={boardFormData.title}
+              onChange={updateBoardForm}
+            />
+          </section>
+          <section className='title-owner'>
+            <label htmlFor='owner'>Owner&apos;s Name:</label>
+            <input
+              name='owner'
+              type='text'
+              value={boardFormData.owner}
+              onChange={updateBoardForm}
+            />
+          </section>
         </section>
         <section className='submit-board'>
           <input type='submit' value='Add New Board' />

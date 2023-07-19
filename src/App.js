@@ -128,7 +128,7 @@ const App = () => {
       });
   };
 
-  const deleteBoards = boardData => {
+  const deleteBoards = () => {
     deleteAllBoardsRequest();
     setBoardData([]);
     setCurrentBoard({});
