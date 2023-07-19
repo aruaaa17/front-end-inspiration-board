@@ -10,10 +10,10 @@ const Board = props => {
         <h2>Selected Board</h2>
         <section className='container1'>
           <p>
-            Board Owner:{props.board.owner}
+            Board Owner: {props.board.owner}
           </p>
           <p>
-            Title:{props.board.title}
+            Title: {props.board.title}
           </p>
         </section>
       </section>
