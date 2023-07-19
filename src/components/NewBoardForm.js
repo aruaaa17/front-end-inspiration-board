@@ -25,7 +25,7 @@ const NewBoardForm = props => {
         : boardFormData.owner;
       setErrorMessage(`Whoops! Invalid data: missing ${missingData} input`);
     } else {
-      props.createNewCard(boardFormData);
+      props.createNewBoard(boardFormData);
     }
     setBoardFormData({
       title: '',
