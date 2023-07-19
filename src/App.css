@@ -167,3 +167,14 @@ h2:before {
   text-decoration: underline;
   cursor: pointer;
 }
+
+
+/* Error Msg Text Color */
+
+.new-board-form > p{
+  color: red;
+}
+
+.CardList > p {
+  color: red;
+}
