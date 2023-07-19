@@ -170,11 +170,42 @@ h2:before {
 
 
 /* Error Msg Text Color */
+@keyframes lights {
+0% {
+    color: hsl(230, 40%, 80%);
+    text-shadow: 0 0 1em hsl(49.94deg 100% 50% / 20%), 0 0 0.125em hsl(203.93deg 100% 60% / 30%), -1em -0.125em 0.5em hsla(40, 100%, 60%, 0), 1em 0.125em 0.5em hsla(200, 100%, 60%, 0);
+}
+
+30% {
+    color: hsl(230, 80%, 90%);
+    text-shadow: 0 0 1em hsl(60.85deg 100% 50% / 50%), 0 0 0.125em hsl(50.5deg 100% 52.61% / 78%), -0.5em -0.125em 0.25em hsl(220.68deg 100% 63.3% / 48%), 0.5em 0.125em 0.25em hsl(212.68deg 100% 53.93% / 56%);
+}
+40% {
+    color: hsl(230, 100%, 95%);
+    text-shadow: 0 0 1em hsl(194.85deg 100% 50% / 71%), 0 0 0.125em hsl(253.88deg 100% 90% / 50%), -0.25em -0.125em 0.125em hsl(160.61deg 100% 60% / 20%), 0.25em 0.125em 0.125em hsla(200, 100%, 60%, 0.4);
+}
+70% {
+    color: hsl(230, 80%, 90%);
+    text-shadow: 0 0 1em hsl(171.3deg 100% 50% / 50%), 0 0 0.125em hsl(186.97deg 100% 60% / 50%), 0.5em -0.125em 0.25em hsla(40, 100%, 60%, 0.2), -0.5em 0.125em 0.25em hsla(200, 100%, 60%, 0.4);
+}
+100% {
+    color: hsl(230, 40%, 80%);
+    text-shadow: 0 0 1em hsl(184.61deg 100% 61.73% / 49%), 0 0 0.125em hsl(209.69deg 100% 59.04% / 55%), 1em -0.125em 0.5em hsla(40, 100%, 60%, 0), -1em 0.125em 0.5em hsla(200, 100%, 60%, 0);
+}
+}
 
 .new-board-form > p{
-  color: red;
+  /* color: red; */
+  margin: auto;
+  font-size: x-large;
+  font-weight: 300;
+  animation: lights 5s 750ms linear infinite;
 }
 
 .CardList > p {
-  color: red;
+  /* color: red; */
+  margin: auto;
+  font-size: large;
+  font-weight: 300;
+  animation: lights 5s 750ms linear infinite;
 }
