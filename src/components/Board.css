@@ -17,6 +17,14 @@
     display: grid;
 }
 
+.container1 {
+	display: flex; 
+	flex-direction: row; 
+	flex-wrap: wrap; 
+    justify-content: stretch;
+    text-indent: 30px;
+}
+
 .cards-container { 
     grid-area: 2 / 1 / 6 / 4;
     display: grid;

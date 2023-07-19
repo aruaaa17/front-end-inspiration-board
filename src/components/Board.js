@@ -8,12 +8,14 @@ const Board = props => {
     <section className='board'>
       <section className='selected-board'>
         <h2>Selected Board</h2>
-        <p>
-          Board owner:{props.board.owner}
-        </p>
-        <p>
-          title:{props.board.title}
-        </p>
+        <section className='container1'>
+          <p>
+            Board Owner:{props.board.owner}
+          </p>
+          <p>
+            Title:{props.board.title}
+          </p>
+        </section>
       </section>
       <section className='new-card-form'>
         <NewCardForm createNewCard={props.createNewCard} />

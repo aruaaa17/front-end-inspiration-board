@@ -1,5 +1,6 @@
 .CardList {
     min-height: fit-content;
+    max-height: 180px;
     min-width: fit-content;
     padding: 30px;
     border-radius: 20px;
