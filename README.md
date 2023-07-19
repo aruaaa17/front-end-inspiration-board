@@ -2,6 +2,19 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## Group: Nerdjal
+
+Yulia & Lou & April
+
+## Links to BE & FE
+[Back-end Github Repo](https://github.com/louloera/back-end-inspiration-board)
+
+[Front-end Github Repo](https://github.com/aruaaa17/front-end-inspiration-board)
+
+[Front-end on Render](https://insparition-board.onrender.com)
+
+[Front-end on Vercel](https://front-end-inspiration-board-ruby.vercel.app/)
+
 ## Available Scripts
 
 In the project directory, you can run:
