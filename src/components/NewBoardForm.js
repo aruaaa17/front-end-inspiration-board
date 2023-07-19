@@ -35,11 +35,13 @@ const NewBoardForm = props => {
 
   if (error) {
     return (
-      <section className='new-board-form'>
+      <section className='new-board-form error'>
+        <h2>Create a New Board</h2>
         <p>{error}</p>
       </section>
     );
   }
+
   if (!showComponent) {
     return (
       <section className='new-board-form hidden'>

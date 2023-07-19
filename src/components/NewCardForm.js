@@ -30,7 +30,8 @@ function NewCardForm(props) {
 
   if (error) {
     return (
-      <section className='CardList'>
+      <section className='CardList error'>
+        <h2>Create a New Card</h2>
         <p>{error}</p>
       </section>
     );
