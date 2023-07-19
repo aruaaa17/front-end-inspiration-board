@@ -1,93 +1,60 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import * as api from './api/apiRequests';
 import Board from './components/Board';
 import BoardList from './components/BoardList';
 import NewBoardForm from './components/NewBoardForm';
 import './App.css';
-import { loadBoardsRequest } from './api/apiRequests';
 
 const App = () => {
   const [boardData, setBoardData] = useState([]);
   const [currentBoard, setCurrentBoard] = useState({});
 
-  const loadBoardsRequest2 = () => {
-    loadBoardsRequest()
-      .then(boards => {
-        setBoardData(boards);
-      })
-      .catch(error => {
-        console.log('error', error);
-      });
+  const loadBoardsRequest = () => {
+    api.loadBoards()
+    .then(boards => {
+      setBoardData(boards);
+    })
+    .catch(error => {
+      console.log('error', error);
+    });
   };
 
   const createCurrentBoard = board => {
-    const setBoards = boardId => {
-      axios
-        .get(`https://inspo-board-api.onrender.com/boards/${boardId}/cards`)
-        .then(response => {
-          if (response.data === undefined) {
-            board.cards = [];
-          }
-          const cards = response.data.cards.map(card => {
-            card.cardId = card.card_id;
-            card.boardId = card.board_id;
-            card.likesCount = card.likes_count;
-            delete card.card_id;
-            delete card.board_id;
-            delete card.likes_count;
-            return card;
-          });
-          board.cards = cards;
+    const setBoards = () => {
+      const loadCardsRequest = () => {
+        api.loadCards(board, board.boardId)
+        .then(board => {
           setCurrentBoard(board);
         })
         .catch(error => {
           console.log('error', error);
         });
+      };
+    loadCardsRequest();
     };
-    setBoards(board.boardId);
+    setBoards();
   };
 
   const boardPostRequest = boardToAdd => {
-    axios
-      .post(`https://inspo-board-api.onrender.com/boards`, {
-        title: boardToAdd.title,
-        owner: boardToAdd.owner,
-      })
-      .then(response => {
-        console.log(boardData);
-        response.data.boardId = response.data.board_id;
-        delete response.data.board_id;
-        setBoardData([...boardData, response.data]);
-      })
-      .catch(error => {
-        console.log('error', error);
-      });
+    api.boardPost(boardToAdd)
+    .then(response => {
+      setBoardData([...boardData, response]);
+    })
+    .catch(error => {
+      console.log('error', error);
+    });
   };
 
   const cardPostRequest = cardToAdd => {
-    console.log('card to add', cardToAdd.message);
-    axios
-      .post(
-        `https://inspo-board-api.onrender.com/boards/${currentBoard.boardId}/cards`,
-        {
-          message: cardToAdd.message,
-        }
-      )
-      .then(response => {
-        console.log(response.data);
-        const card = response.data;
-        card.cardId = card.card_id;
-        card.boardId = card.board_id;
-        card.likesCount = card.likes_count;
-        delete card.card_id;
-        delete card.board_id;
-        delete card.likes_count;
-        currentBoard.cards.push(card);
-        setCurrentBoard({ ...currentBoard });
-      })
-      .catch(error => {
-        console.log(error.data);
-      });
+    api.cardPost(cardToAdd, currentBoard.boardId)
+    .then(card => {
+      currentBoard.cards.push(card);
+      setCurrentBoard({ ...currentBoard });
+    })
+    .catch(error => {
+      console.log(error.data);
+    });
   };
 
   const createNewCard = newCard => {
@@ -99,14 +66,13 @@ const App = () => {
   };
 
   const deleteCardRequest = cardId => {
-    axios
-      .delete(`https://inspo-board-api.onrender.com/cards/${cardId}`)
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    api.deleteCard(cardId)
+    .then(response => {
+      console.log(response);
+    })
+    .catch(error => {
+      console.log(error);
+    });
   };
 
   const deleteCard = cardToDelete => {
@@ -118,14 +84,13 @@ const App = () => {
   };
 
   const deleteAllBoardsRequest = () => {
-    axios
-      .delete(`https://inspo-board-api.onrender.com/boards`)
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    api.deleteAllBoards()
+    .then(response => {
+      console.log(response);
+    })
+    .catch(error => {
+      console.log(error);
+    });
   };
 
   const deleteBoards = () => {
@@ -135,19 +100,13 @@ const App = () => {
   };
 
   const updateLikesRequest = cardToUpdate => {
-    axios
-      .patch(
-        `https://inspo-board-api.onrender.com/cards/${cardToUpdate.cardId}`,
-        {
-          likes_count: cardToUpdate.likesCount,
-        }
-      )
-      .then(response => {
-        console.log(response);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    api.updateLikes(cardToUpdate)
+    .then(response => {
+      console.log(response);
+    })
+    .catch(error => {
+      console.log(error);
+    });
   };
 
   const updateLikes = cardToUpdate => {
@@ -162,7 +121,7 @@ const App = () => {
   };
 
   useEffect(() => {
-    loadBoardsRequest2();
+    loadBoardsRequest();
   }, []);
 
   const boardComponent = () => {
