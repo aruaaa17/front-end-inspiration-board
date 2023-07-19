@@ -47,7 +47,7 @@ ul > li {
 	transition: all 0.2s ease-out;
 }
 
-ul > li:hover {
+.boards-list > li:hover {
 	padding-right: 2px;
 	background-color: rgb(231, 244, 253);
 	border: 1px;
