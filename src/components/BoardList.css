@@ -1,9 +1,56 @@
-.boards-list {
-    width: 450px;
-    overflow-y: scroll;
-    position: relative;
-    height: 200px;
-    padding: 0;
+.boards {
+	display: flex;
+	margin: 0;
+  padding: 0;
 }
 
-/* Unfinished Scrollbar */
+.boards-list {
+	width: 400px;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	position: relative;
+	height: 160px;
+	padding: 0;
+}
+
+.boards-list::-webkit-scrollbar {
+  width: 3px; 
+}
+
+.boards-list::-webkit-scrollbar-thumb {
+  background-color: rgb(211, 241, 248); /* Set the color of the scrollbar thumb */
+  border-radius: 3px; /* Optional: Add some border-radius to the thumb */
+}
+
+.boards-list::-webkit-scrollbar-thumb:hover {
+  background-color: rgb(210, 217, 218); /* Set the color of the scrollbar thumb on hover */
+}
+
+.boards-list::-webkit-scrollbar-track {
+  background-color: rgb(202, 210, 211); /* Set the color of the scrollbar track */
+}
+
+h2 {
+padding-left: 10px;
+}
+
+ul {
+	margin-top: 5px;
+	justify-content: center;
+	text-align: center;
+	list-style: none
+}
+
+ul > li {
+	justify-content: center;
+	text-align: center;
+	transition: all 0.2s ease-out;
+}
+
+ul > li:hover {
+	padding-right: 2px;
+	background-color: rgb(231, 244, 253);
+	border: 1px;
+	text-shadow: 1px 0px 1px rgb(76, 95, 103);
+	cursor: pointer;
+}
