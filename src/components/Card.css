@@ -9,7 +9,7 @@
     /* border: 4px solid; */
     /* background-image: url("https://www.freepnglogos.com/uploads/note-png/note-change-website-articles-fliers-posting-guidelines-30.png"); */
     background-image: url("https://www.pngall.com/wp-content/uploads/5/Sticky-Notes-PNG-Pic.png");
-    background-size: 100% 100%;
+    background-size: cover;
     background-repeat: no-repeat;
     position: relative;
     /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.332); */
@@ -41,7 +41,7 @@
 }
 
 .delete {
-    padding: 16px 24px;
+    text-indent: 5px;
     position: relative;
     border-radius: 8px;
 }

@@ -20,14 +20,12 @@ const Board = props => {
       <section className='new-card-form'>
         <NewCardForm createNewCard={props.createNewCard} />
       </section>
-      <section className='cards-container'>
         <CardList
           cards={props.board.cards}
           boardTitle={props.board.title}
           updateLikes={props.updateLikes}
           deleteCard={props.deleteCard}
         ></CardList>
-      </section>
     </section>
   );
 };
