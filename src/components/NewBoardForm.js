@@ -24,6 +24,7 @@ const NewBoardForm = props => {
         ? boardFormData.title
         : boardFormData.owner;
       setErrorMessage(`Whoops! Invalid data: missing ${missingData} input`);
+      setShowComponent(!showComponent);
     } else {
       props.createNewBoard(boardFormData);
     }
@@ -33,11 +34,17 @@ const NewBoardForm = props => {
     });
   };
 
-  if (error) {
+  if (error && !showComponent) {
     return (
       <section className='new-board-form error'>
         <h2>Create a New Board</h2>
         <p>{error}</p>
+        <button
+          className='new-board-form_hide show'
+          onClick={() => setShowComponent(!showComponent)}
+        >
+          Show New Board Form
+        </button>
       </section>
     );
   }
