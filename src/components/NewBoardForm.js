@@ -8,6 +8,7 @@ const NewBoardForm = props => {
     owner: '',
   });
   const [showComponent, setShowComponent] = useState(true);
+  const [error, setErrorMessage] = useState('');
 
   const updateBoardForm = event => {
     setBoardFormData({
@@ -18,16 +19,30 @@ const NewBoardForm = props => {
 
   const handleFormSubmit = event => {
     event.preventDefault();
-    props.createNewBoard(boardFormData);
+    if (!boardFormData.title || !boardFormData.owner) {
+      const missingData = !boardFormData.title
+        ? boardFormData.title
+        : boardFormData.owner;
+      setErrorMessage(`Whoops! Invalid data: missing ${missingData} input`);
+    } else {
+      props.createNewCard(boardFormData);
+    }
     setBoardFormData({
       title: '',
       owner: '',
     });
   };
 
-  if (!showComponent) {
+  if (error) {
     return (
       <section className='new-board-form'>
+        <p>{error}</p>
+      </section>
+    );
+  }
+  if (!showComponent) {
+    return (
+      <section className='new-board-form hidden'>
         <h2>Create a New Board</h2>
         <button
           className='new-board-form_hide'

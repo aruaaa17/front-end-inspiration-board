@@ -4,48 +4,21 @@ import './App.css';
 import Board from './components/Board';
 import BoardList from './components/BoardList';
 import NewBoardForm from './components/NewBoardForm';
-import { loadBoardsRequest } from './api/apiRequests'
-
-const INITIAL_BOARD = [
-  {
-    boardId: 1,
-    owner: 'nerdjal',
-    title: '1st Board',
-    cards: [
-      {
-        cardId: 1,
-        message: 'HELLO',
-        likesCount: 0,
-        boardId: 1,
-      },
-      {
-        cardId: 2,
-        message: 'HELLO2',
-        likesCount: 0,
-        boardId: 1,
-      },
-      {
-        cardId: 3,
-        message: 'HELLO3',
-        likesCount: 0,
-        boardId: 1,
-      },
-    ],
-  },
-];
+import { loadBoardsRequest } from './api/apiRequests';
 
 const App = () => {
   const [boardData, setBoardData] = useState([]);
   const [currentBoard, setCurrentBoard] = useState({});
 
-const loadBoardsRequest2 = () => {
-  loadBoardsRequest().then(boards => {
-    setBoardData(boards);
-  })
-    .catch(error => {
-      console.log('error', error);
-    });
-};
+  const loadBoardsRequest2 = () => {
+    loadBoardsRequest()
+      .then(boards => {
+        setBoardData(boards);
+      })
+      .catch(error => {
+        console.log('error', error);
+      });
+  };
 
   const createCurrentBoard = board => {
     const setBoards = boardId => {
@@ -81,8 +54,7 @@ const loadBoardsRequest2 = () => {
         owner: boardToAdd.owner,
       })
       .then(response => {
-
-        console.log(boardData)
+        console.log(boardData);
         response.data.boardId = response.data.board_id;
         delete response.data.board_id;
         setBoardData([...boardData, response.data]);
@@ -110,10 +82,8 @@ const loadBoardsRequest2 = () => {
         delete card.card_id;
         delete card.board_id;
         delete card.likes_count;
-        currentBoard.cards.push(card);  
-        setCurrentBoard({...currentBoard});
-
-
+        currentBoard.cards.push(card);
+        setCurrentBoard({ ...currentBoard });
       })
       .catch(error => {
         console.log(error.data);

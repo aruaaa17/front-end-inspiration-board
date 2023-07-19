@@ -6,10 +6,17 @@ function NewCardForm(props) {
   const [cardFormData, setCardFormData] = useState({
     message: '',
   });
+  const [error, setErrorMessage] = useState('');
 
   const handleFormSubmit = event => {
     event.preventDefault();
-    props.createNewCard(cardFormData);
+    if (cardFormData.message.length > 40) {
+      setErrorMessage(
+        'Whoops! Input message is longer than expected. Message should not exceed 40 characters.'
+      );
+    } else {
+      props.createNewCard(cardFormData);
+    }
     setCardFormData({
       message: '',
     });
@@ -20,6 +27,14 @@ function NewCardForm(props) {
       message: event.target.value,
     });
   };
+
+  if (error) {
+    return (
+      <section className='CardList'>
+        <p>{error}</p>
+      </section>
+    );
+  }
 
   return (
     <section className='CardList'>
