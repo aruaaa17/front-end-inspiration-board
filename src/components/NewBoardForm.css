@@ -6,6 +6,17 @@
 	margin-bottom: 1em;
 }
 
+input {
+	border-radius: 3px;
+	border: none;
+	padding: 5px;
+}
+
+input:focus {
+  border: 1px solid #6fd5ea;
+	outline:none;
+}
+
 .form-title, .title-owner {
   display: grid;
   grid-template-columns: minmax(min-content, 1fr) minmax(min-content, 1.3fr);
